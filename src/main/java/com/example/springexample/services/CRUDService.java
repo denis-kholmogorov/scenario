@@ -1,11 +1,8 @@
 package com.example.springexample.services;
 
 import java.util.Collection;
-import java.util.List;
 
-/**
- * CRUDService
- */
+
 public interface CRUDService<T> {
 
     T getById(Integer id);

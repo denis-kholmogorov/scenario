@@ -2,9 +2,6 @@ package com.example.springexample.components;
 
 import org.springframework.stereotype.Component;
 
-/**
- * BeanTwo
- */
 @Component
 public class BeanTwo {
 

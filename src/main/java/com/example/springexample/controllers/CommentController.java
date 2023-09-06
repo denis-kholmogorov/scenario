@@ -3,9 +3,7 @@ import com.example.springexample.dto.CommentDto;
 import com.example.springexample.services.CommentCRUDService;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
-/**
- * CommentController
- */
+
 @RestController
 @RequestMapping("/comment")
 public class CommentController {

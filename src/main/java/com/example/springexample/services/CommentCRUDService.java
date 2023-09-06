@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
-/**
- * CommentCRUDService
- */
+
 @Service
 public class CommentCRUDService implements CRUDService<CommentDto> {
 
@@ -28,20 +26,20 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
     @Override
     public void create(CommentDto dto) {
         System.out.println("Create");
-        if(dto.text.length() > lengthMax){
+        if(dto.getText().length() > lengthMax){
             throw new RuntimeException("Размер текста комментария больше" + lengthMax);
         }
-        storage.put(dto.id, dto);
+        storage.put(dto.getId(), dto);
     }
     @Override
     public void update(CommentDto dto) {
         System.out.println("Update");
-        if(dto.text.length() > lengthMax){
+        if(dto.getText().length() > lengthMax){
             throw new RuntimeException("Размер текста комментария больше" + lengthMax);
         }
 
-        CommentDto commentDto = storage.get(dto.id);
-        commentDto.text = dto.text;
+        CommentDto commentDto = storage.get(dto.getId());
+        commentDto.setText(dto.getText());
     }
     @Override
     public CommentDto deleteById(Integer id) {

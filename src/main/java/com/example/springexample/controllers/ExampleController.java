@@ -3,9 +3,6 @@ package com.example.springexample.controllers;
 import org.springframework.web.bind.annotation.*;
 
 
-/**
- * ExampleController
- */
 @RestController
 @RequestMapping(path = "/hello")
 public class ExampleController {
@@ -23,10 +20,14 @@ public class ExampleController {
 
     @PostMapping()
     public String helloSpringBody(@RequestBody Body body) {
-        return "hello " + body.name;
+        return "hello " + body.getName();
     }
 }
 
 class Body {
-    public String name;
+    public String getName() {
+        return name;
+    }
+
+    private String name;
 }
