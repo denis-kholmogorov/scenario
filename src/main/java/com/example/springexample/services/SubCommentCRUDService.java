@@ -6,9 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.HashMap;
 
-/**
- * SubCommentCRUDService
- */
 @Service
 public class SubCommentCRUDService implements CRUDService<CommentDto> {
 
@@ -29,14 +26,14 @@ public class SubCommentCRUDService implements CRUDService<CommentDto> {
     @Override
     public void create(CommentDto dto) {
         System.out.println("Delete");
-        storage.put(dto.id, dto);
+        storage.put(dto.getId(), dto);
     }
 
     @Override
     public void update(CommentDto dto) {
         System.out.println("Update");
-        CommentDto commentDto = storage.get(dto.id);
-        commentDto.text = dto.text;
+        CommentDto commentDto = storage.get(dto.getId());
+        commentDto.setText(dto.getText());
     }
 
     @Override
