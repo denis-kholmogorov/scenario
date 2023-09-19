@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List Comments</title>
+  <style>
+    body {
+      text-align: center;
+      background-color: beige;
+    }
+    ul {
+      width: 50%;
+      margin: 0 auto;
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>Список комментариев</h1>
+<ul>
+  <li th:each="comment : ${comments}">
+    <p th:text="${comment.author} + ': ' + ${comment.text}"></p>
+  </li>
+</ul>
+<br>
+<a href="/add">Создать комментарий</a>
+</body>
+</html>

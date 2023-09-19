@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+
 
 @Service
 public class CommentCRUDService implements CRUDService<CommentDto> {
@@ -12,7 +14,7 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
     @Value("${comment.length.max}")
     private Integer lengthMax;
 
-    private HashMap<Integer, CommentDto> storage = new HashMap<>();
+    private final Map<Integer, CommentDto> storage = new HashMap<>();
     @Override
     public CommentDto getById(Integer id) {
         System.out.printf("Get by id = %s\n", id);
@@ -29,7 +31,9 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
         if(dto.getText().length() > lengthMax){
             throw new RuntimeException("Размер текста комментария больше" + lengthMax);
         }
-        storage.put(dto.getId(), dto);
+        int nextId = storage.size();
+        dto.setId(nextId);
+        storage.put(nextId, dto);
     }
     @Override
     public void update(CommentDto dto) {
