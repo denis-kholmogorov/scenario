@@ -5,6 +5,7 @@ import com.example.springexample.entity.Comment;
 import com.example.springexample.repositories.AuthorRepository;
 import com.example.springexample.repositories.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
-
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -29,23 +30,23 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
 
     @Override
     public CommentDto getById(Integer id) {
-        System.out.printf("Get by id = %s\n", id);
+        log.info(String.format("Get by id = %s",id));
         Comment comment = commentRepository.findById(id).orElseThrow();
         return mapToDto(comment);
     }
     @Override
     public Collection<CommentDto> getAll() {
-        System.out.println("Get all");
+        log.info("Get all");
         return commentRepository.findAll().stream().map(CommentCRUDService::mapToDto).toList();
     }
 
     public Page<CommentDto> getAllPage(Pageable page) {
-        System.out.println("Get all");
+        log.info("Get all");
         return commentRepository.findAll(page).map(CommentCRUDService::mapToDto);
     }
     @Override
     public void create(CommentDto dto) {
-        System.out.println("Create");
+        log.info("Create");
         if(dto.getText().length() > lengthMax){
             throw new RuntimeException("Размер текста комментария больше" + lengthMax);
         }
@@ -57,7 +58,7 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
     }
     @Override
     public void update(CommentDto dto) {
-        System.out.println("Update");
+        log.info("Update");
         if(dto.getText().length() > lengthMax){
             throw new RuntimeException("Размер текста комментария больше" + lengthMax);
         }
@@ -68,7 +69,7 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
     }
     @Override
     public CommentDto deleteById(Integer id) {
-        System.out.println("Delete");
+        log.info("Delete");
         Comment comment = commentRepository.findById(id).orElseThrow();
         commentRepository.deleteById(id);
         return mapToDto(comment);
