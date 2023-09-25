@@ -4,26 +4,24 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
     <changeSet id="createAuthorTable" author="skillbox">
-        <createTable tableName="author">
-            <column name="id" type="serial">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="rating" type="bigint"/>
-            <column name="first_name" type="varchar(255)"/>
-            <column name="last_name" type="varchar(255)"/>
-        </createTable>
+        <sql>
+            CREATE TABLE author (
+                                    id serial PRIMARY KEY,
+                                    rating bigint,
+                                    first_name varchar(255),
+                                    last_name varchar(255)
+            );
+        </sql>
     </changeSet>
 
     <changeSet id="createCommentTable" author="skillbox">
-        <createTable tableName="comment">
-            <column name="id" type="serial">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="created_date" type="timestamp(6)"/>
-            <column name="comment_text" type="varchar(255)"/>
-            <column name="author_id" type="integer">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
+        <sql>
+            CREATE TABLE comment (
+                                     id serial PRIMARY KEY,
+                                     created_date timestamp(6),
+                                     comment_text varchar(255),
+                                     author_id integer NOT NULL
+            );
+        </sql>
     </changeSet>
 </databaseChangeLog>
