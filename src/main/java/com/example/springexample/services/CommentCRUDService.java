@@ -30,7 +30,7 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
 
     @Override
     public CommentDto getById(Integer id) {
-        log.info(String.format("Get by id = %s",id));
+        log.info("Get by id = {}",id);
         Comment comment = commentRepository.findById(id).orElseThrow();
         return mapToDto(comment);
     }
@@ -67,6 +67,7 @@ public class CommentCRUDService implements CRUDService<CommentDto> {
         comment.setAuthor(author);
         commentRepository.save(comment);
     }
+
     @Override
     public CommentDto deleteById(Integer id) {
         log.info("Delete");
